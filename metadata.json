@@ -1,0 +1,6 @@
+{
+  "name": "Kundacine",
+  "description": "O seu portal premium de streaming de filmes, séries, anime e dorama.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

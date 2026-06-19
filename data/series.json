@@ -1,0 +1,94 @@
+[
+  {
+    "id": "as-crônicas-de-kunda",
+    "title": "As Crônicas de Kunda",
+    "description": "Uma antiga dinastia luta contra forças obscuras que ameaçam a paz da lendária terra de Kunda.",
+    "coverMobile": "https://picsum.photos/seed/kunda_m/600/900",
+    "coverDesktop": "https://picsum.photos/seed/kunda_d/1080/720",
+    "backgroundMobile": "https://picsum.photos/seed/kunda_bgm/600/400",
+    "backgroundDesktop": "https://picsum.photos/seed/kunda_bg/1920/1080",
+    "rating": 4.8,
+    "year": 2024,
+    "genres": ["Ficção Científica", "Drama"],
+    "uploadDate": "2026-06-10T10:00:00Z",
+    "category": "Série",
+    "seasons": [
+      {
+        "number": 1,
+        "name": "Temporada 1: O Despertar",
+        "episodes": [
+          {
+            "number": 1,
+            "title": "O Primeiro Clã",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+            "duration": "14m"
+          },
+          {
+            "number": 2,
+            "title": "A Jornada Sombria",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+            "duration": "15m"
+          },
+          {
+            "number": 3,
+            "title": "A Revelação de Kunda",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            "duration": "10m"
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "name": "Temporada 2: A Aliança",
+        "episodes": [
+          {
+            "number": 1,
+            "title": "Novas Fronteiras",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+            "duration": "12m"
+          },
+          {
+            "number": 2,
+            "title": "O Confronto Final",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+            "duration": "18m"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "conexao-futura",
+    "title": "Conexão Futura",
+    "description": "Hackers de elite descobrem uma rede neural que abriga consciências de pessoas desaparecidas há um século.",
+    "coverMobile": "https://picsum.photos/seed/futura_m/600/900",
+    "coverDesktop": "https://picsum.photos/seed/futura_d/1080/720",
+    "backgroundMobile": "https://picsum.photos/seed/futura_bgm/600/400",
+    "backgroundDesktop": "https://picsum.photos/seed/futura_bg/1920/1080",
+    "rating": 4.6,
+    "year": 2023,
+    "genres": ["Ficção Científica", "Suspense"],
+    "uploadDate": "2026-03-12T09:30:00Z",
+    "category": "Série",
+    "seasons": [
+      {
+        "number": 1,
+        "name": "Temporada 1",
+        "episodes": [
+          {
+            "number": 1,
+            "title": "Código Fantasma",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+            "duration": "15m"
+          },
+          {
+            "number": 2,
+            "title": "O Protocolo da Alma",
+            "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            "duration": "12m"
+          }
+        ]
+      }
+    ]
+  }
+]
