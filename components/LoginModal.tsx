@@ -26,7 +26,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
     setSuccessMsg('');
@@ -41,17 +41,17 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
         setErrorMsg('Por favor, informe seu nome completo.');
         return;
       }
-      const success = signUp(email, password, name, nickname);
+      const success = await signUp(email, password, name, nickname);
       if (success) {
         setSuccessMsg('Conta criada com sucesso! Você ganhou 3 dias de plano GOLD grátis para testar a vontade.');
         setTimeout(() => {
           onClose();
         }, 2000);
       } else {
-        setErrorMsg('Este e-mail já está cadastrado.');
+        setErrorMsg('Este e-mail já está cadastrado ou senha curta.');
       }
     } else {
-      const success = login(email, password);
+      const success = await login(email, password);
       if (success) {
         setSuccessMsg('Conectado com sucesso!');
         setTimeout(() => {
@@ -69,8 +69,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     setSuccessMsg('');
   };
 
-  const handleFakeGoogleSelect = (selectedEmail: string, selectedName: string) => {
-    loginWithGoogleSim(selectedEmail, selectedName);
+  const handleFakeGoogleSelect = async (selectedEmail: string, selectedName: string) => {
+    await loginWithGoogleSim(selectedEmail, selectedName);
     setShowGoogleFakePopup(false);
     setSuccessMsg('Autenticado com o Google com sucesso! 3 dias de Teste Gold Ativados.');
     setTimeout(() => {

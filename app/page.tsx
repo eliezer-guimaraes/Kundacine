@@ -358,7 +358,7 @@ export default function KundacineHome() {
     }, 4000);
   };
 
-  const handlePostCritique = (e: React.FormEvent) => {
+  const handlePostCritique = async (e: React.FormEvent) => {
     e.preventDefault();
     setCritiqueError('');
     setCritiqueSuccess(false);
@@ -375,7 +375,7 @@ export default function KundacineHome() {
 
     if (!selectedContent) return;
 
-    const result = addVIPComment(selectedContent.id, critiqueText, critiqueRating);
+    const result = await addVIPComment(selectedContent.id, critiqueText, critiqueRating);
     if (result.success) {
       setCritiqueText('');
       setCritiqueSuccess(true);
@@ -405,7 +405,7 @@ export default function KundacineHome() {
     }, 100);
   };
 
-  const handleActivateTokenSubmit = (e: React.FormEvent) => {
+  const handleActivateTokenSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setTokenResult(null);
     if (!currentUser) {
@@ -414,7 +414,7 @@ export default function KundacineHome() {
     }
     if (!planToken.trim()) return;
 
-    const res = activateToken(planToken);
+    const res = await activateToken(planToken);
     setTokenResult(res);
     setPlanToken('');
   };

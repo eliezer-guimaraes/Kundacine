@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Basic context checkers
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuth() && request.auth.uid == userId;
+    }
+
+    function isVip() {
+      return isAuth() && (
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.plan == 'Premium' ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.plan == 'Testador' ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.nickname == 'admin'
+      );
+    }
+
+    function isAdmin() {
+      return isAuth() && (
+        request.auth.token.email == 'admin@kundacine.com' ||
+        request.auth.uid == 'admin-id' ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.nickname == 'admin'
+      );
+    }
+
+    // Rules matching collections
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if isOwner(userId) || isAdmin();
+    }
+
+    match /content/{contentId} {
+      allow read: if true;
+      allow write: if isAdmin() || !exists(/databases/$(database)/documents/content/{contentId}); 
+    }
+
+    match /requests/{requestId} {
+      allow read: if true;
+      allow create: if isAuth();
+      allow update, delete: if isAdmin();
+    }
+
+    match /chat/{chatId} {
+      allow read: if true;
+      allow create: if isAuth();
+      allow update, delete: if isAdmin();
+    }
+
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if isAuth(); // Checking isVip is done on client or relax rule to isAuth to prevent blocking if profile doc is still written
+      allow update, delete: if isAdmin();
+    }
+
+    match /history/{historyId} {
+      allow read, write: if isAuth();
+    }
+  }
+}

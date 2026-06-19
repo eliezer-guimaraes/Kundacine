@@ -1,0 +1,134 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile with information about subscription plans.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the user" },
+        "name": { "type": "string", "description": "Display name of the user" },
+        "nickname": { "type": "string", "description": "Unique username used for social interactivity" },
+        "email": { "type": "string", "description": "User email address" },
+        "avatar": { "type": "string", "description": "URL of user avatar image" },
+        "plan": { "type": "string", "enum": ["Testador", "Básico", "Gold", "Premium"], "description": "Assigned active access plan" },
+        "trialExpiresAt": { "type": "string", "format": "date-time", "description": "When the trial duration lapses" },
+        "planActivatedAt": { "type": "string", "format": "date-time", "description": "Timestamp of subscription activation" }
+      },
+      "required": ["id", "name", "nickname", "email", "plan"]
+    },
+    "ContentItem": {
+      "title": "Streaming Content",
+      "description": "Information about a film, anime, series, or dorama content.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique content slug or hyphenated ID" },
+        "title": { "type": "string", "description": "Commercial title of the show" },
+        "description": { "type": "string", "description": "Plot summary" },
+        "videoUrl": { "type": "string", "description": "Direct fallback streaming URL if a film" },
+        "coverMobile": { "type": "string", "description": "Vertical aspect cover image URL" },
+        "coverDesktop": { "type": "string", "description": "Horizontal aspect marquee image URL" },
+        "backgroundMobile": { "type": "string", "description": "Vertical background placeholder" },
+        "backgroundDesktop": { "type": "string", "description": "Horizontal background display" },
+        "rating": { "type": "number", "description": "Aggregated user rating out of 5" },
+        "year": { "type": "number", "description": "Release year" },
+        "genres": { "type": "array", "description": "Tags of genres representing the title" },
+        "uploadDate": { "type": "string", "format": "date-time", "description": "Upload date on catalog" },
+        "category": { "type": "string", "enum": ["Filme", "Série", "Anime", "Dorama"], "description": "Differentiating media type" },
+        "ageRating": { "type": "string", "description": "Safety advice rating group" },
+        "seasons": { "type": "array", "description": "Structured metadata for series season breakdowns" }
+      },
+      "required": ["id", "title", "description", "coverMobile", "coverDesktop", "rating", "year", "genres", "category"]
+    },
+    "RequestedContent": {
+      "title": "Content Request",
+      "description": "User requested content not presently in our catalogs.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "mediaType": { "type": "string" },
+        "userNickname": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "mediaType", "userNickname", "timestamp"]
+    },
+    "ChatMessage": {
+      "title": "Chat Message",
+      "description": "A single community chat message.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userName": { "type": "string" },
+        "userNickname": { "type": "string" },
+        "userPlan": { "type": "string" },
+        "avatar": { "type": "string" },
+        "content": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userName", "userNickname", "content", "timestamp"]
+    },
+    "VIPComment": {
+      "title": "Critique Review",
+      "description": "Premium customer rating critiques.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "contentId": { "type": "string" },
+        "userName": { "type": "string" },
+        "userNickname": { "type": "string" },
+        "userPlan": { "type": "string" },
+        "avatar": { "type": "string" },
+        "text": { "type": "string" },
+        "rating": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "contentId", "userName", "userNickname", "text", "rating", "timestamp"]
+    },
+    "WatchHistoryItem": {
+      "title": "Watch Tracker Progress",
+      "description": "Keeps track of where a user has paused their episodes/movies.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "contentId": { "type": "string" },
+        "contentType": { "type": "string" },
+        "title": { "type": "string" },
+        "cover": { "type": "string" },
+        "progress": { "type": "number" },
+        "seasonNumber": { "type": "number" },
+        "episodeNumber": { "type": "number" },
+        "episodeTitle": { "type": "string" },
+        "videoUrl": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "contentId", "contentType", "title", "cover", "progress", "videoUrl", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User subscription metadata details."
+    },
+    "/content/{contentId}": {
+      "schema": "ContentItem",
+      "description": "Primary streaming movies and series."
+    },
+    "/requests/{requestId}": {
+      "schema": "RequestedContent",
+      "description": "User requests list."
+    },
+    "/chat/{chatId}": {
+      "schema": "ChatMessage",
+      "description": "Real-time global chat conversation."
+    },
+    "/comments/{commentId}": {
+      "schema": "VIPComment",
+      "description": "Reviews of Movies/Series of Premium users."
+    },
+    "/history/{historyId}": {
+      "schema": "WatchHistoryItem",
+      "description": "Watch history list tracked per user."
+    }
+  }
+}
